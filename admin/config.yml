@@ -1,1 +1,138 @@
+# Gestor de conteúdo (Decap CMS) — grava no GitHub; o Vercel republica o site sozinho.
+# Login pelo GitHub através de /api/auth e /api/callback (pasta api/), sem Netlify.
+backend:
+  name: github
+  repo: SEU-UTILIZADOR/SEU-REPOSITORIO   # <- ALTERE: ex. alcartel/enfermeiro-competente
+  branch: main
+  base_url: https://enfermeirocp.vercel.app
+  auth_endpoint: api/auth
 
+locale: pt
+media_folder: uploads
+public_folder: /uploads
+site_url: /
+display_url: /
+
+collections:
+  - name: artigos
+    label: Artigos
+    label_singular: Artigo
+    folder: conteudo/artigos
+    create: true
+    extension: json
+    format: json
+    identifier_field: titulo
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor: { preview: false }
+    fields:
+      - { label: 'Título', name: titulo, widget: string }
+      - { label: 'Data', name: data, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { label: 'Resumo (aparece no Google, máx. 160 letras)', name: resumo, widget: text, hint: 'Uma ou duas frases a explicar o conteúdo.' }
+      - { label: 'Autor', name: autor, widget: string, required: false }
+      - { label: 'Imagem de capa', name: imagem, widget: image, required: false }
+      - { label: 'Etiquetas', name: etiquetas, widget: list, required: false, default: [] }
+      - { label: 'Texto', name: corpo, widget: markdown, required: false }
+      - { label: 'Publicado', name: publicado, widget: boolean, default: true, hint: 'Desligue para esconder sem apagar.' }
+  - name: videos
+    label: Vídeos
+    label_singular: Vídeo
+    folder: conteudo/videos
+    create: true
+    extension: json
+    format: json
+    identifier_field: titulo
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor: { preview: false }
+    fields:
+      - { label: 'Título', name: titulo, widget: string }
+      - { label: 'Data', name: data, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { label: 'Resumo (aparece no Google, máx. 160 letras)', name: resumo, widget: text, hint: 'Uma ou duas frases a explicar o conteúdo.' }
+      - { label: 'Link do YouTube', name: youtube, widget: string, hint: 'Cole o link normal (youtube.com/watch… ou youtu.be/…). Aparece como vídeo na app e no site.' }
+      - { label: 'Imagem de capa', name: imagem, widget: image, required: false }
+      - { label: 'Etiquetas', name: etiquetas, widget: list, required: false, default: [] }
+      - { label: 'Descrição do vídeo', name: corpo, widget: markdown, required: false }
+      - { label: 'Publicado', name: publicado, widget: boolean, default: true, hint: 'Desligue para esconder sem apagar.' }
+  - name: documentos
+    label: Documentos PDF
+    label_singular: Documento
+    folder: conteudo/documentos
+    create: true
+    extension: json
+    format: json
+    identifier_field: titulo
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor: { preview: false }
+    fields:
+      - { label: 'Título', name: titulo, widget: string }
+      - { label: 'Data', name: data, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { label: 'Resumo (aparece no Google, máx. 160 letras)', name: resumo, widget: text, hint: 'Uma ou duas frases a explicar o conteúdo.' }
+      - { label: 'Ficheiro PDF', name: ficheiro, widget: file }
+      - { label: 'Imagem de capa', name: imagem, widget: image, required: false }
+      - { label: 'Etiquetas', name: etiquetas, widget: list, required: false, default: [] }
+      - { label: 'Descrição', name: corpo, widget: markdown, required: false }
+      - { label: 'Publicado', name: publicado, widget: boolean, default: true, hint: 'Desligue para esconder sem apagar.' }
+  - name: noticias
+    label: Notícias
+    label_singular: Notícia
+    folder: conteudo/noticias
+    create: true
+    extension: json
+    format: json
+    identifier_field: titulo
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor: { preview: false }
+    fields:
+      - { label: 'Título', name: titulo, widget: string }
+      - { label: 'Data', name: data, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { label: 'Resumo (aparece no Google, máx. 160 letras)', name: resumo, widget: text, hint: 'Uma ou duas frases a explicar o conteúdo.' }
+      - { label: 'Nome da fonte (ex.: OMS, Ministério da Saúde)', name: fonte, widget: string, required: false }
+      - { label: 'Link da fonte original', name: fonte_url, widget: string, required: false }
+      - { label: 'Imagem de capa', name: imagem, widget: image, required: false }
+      - { label: 'Etiquetas', name: etiquetas, widget: list, required: false, default: [] }
+      - { label: 'Texto', name: corpo, widget: markdown, required: false }
+      - { label: 'Publicado', name: publicado, widget: boolean, default: true, hint: 'Desligue para esconder sem apagar.' }
+  - name: curiosidades
+    label: Curiosidades
+    label_singular: Curiosidade
+    folder: conteudo/curiosidades
+    create: true
+    extension: json
+    format: json
+    identifier_field: titulo
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor: { preview: false }
+    fields:
+      - { label: 'Título', name: titulo, widget: string }
+      - { label: 'Data', name: data, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { label: 'Resumo (aparece no Google, máx. 160 letras)', name: resumo, widget: text, hint: 'Uma ou duas frases a explicar o conteúdo.' }
+      - { label: 'Imagem de capa', name: imagem, widget: image, required: false }
+      - { label: 'Etiquetas', name: etiquetas, widget: list, required: false, default: [] }
+      - { label: 'Texto', name: corpo, widget: markdown, required: false }
+      - { label: 'Publicado', name: publicado, widget: boolean, default: true, hint: 'Desligue para esconder sem apagar.' }
+  - name: definicoes
+    label: Definições do site
+    files:
+      - name: site
+        label: Endereço e anúncios
+        file: conteudo/site.json
+        format: json
+        fields:
+          - { label: 'Endereço do site (ex.: https://enfermeirocompetente.netlify.app)', name: siteUrl, widget: string, required: false }
+          - { label: 'Link para descarregar o aplicativo (card «Download aplicativo» na tela inicial)', name: appDownloadUrl, widget: string, required: false }
+          - { label: 'Google AdSense — ID do editor (ca-pub-…)', name: adsenseClient, widget: string, required: false }
+          - { label: 'Google AdSense — ID do bloco de anúncio', name: adsenseSlot, widget: string, required: false }
+          - { label: 'Google Analytics 4 — ID de medição (G-XXXXXXXXXX)', name: gaId, widget: string, required: false }
+          - { label: 'Google Search Console — código de verificação (só o valor de content)', name: googleVerification, widget: string, required: false }
+          - { label: 'Bing Webmaster — código de verificação', name: bingVerification, widget: string, required: false }
+          - { label: 'Facebook App ID (opcional)', name: facebookAppId, widget: string, required: false }
+          - { label: 'X/Twitter (ex.: @enfermeirocp)', name: twitterHandle, widget: string, required: false }
+          - { label: 'Email de contacto', name: contactEmail, widget: string, required: false }
+          - { label: 'Telefone / WhatsApp', name: contactPhone, widget: string, required: false }
+          - { label: 'Facebook (link da página)', name: facebook, widget: string, required: false }
+          - { label: 'Instagram (link)', name: instagram, widget: string, required: false }
+          - { label: 'YouTube (link do canal)', name: youtube, widget: string, required: false }
+          - { label: 'TikTok (link)', name: tiktok, widget: string, required: false }
+          - { label: 'X/Twitter (link)', name: x, widget: string, required: false }
+          - { label: 'LinkedIn (link)', name: linkedin, widget: string, required: false }
+          - { label: 'Canal/grupo de WhatsApp (link)', name: whatsappCanal, widget: string, required: false }
+          - { label: 'Mostrar no Google TODAS as páginas de diagnósticos NANDA-I', name: indexarTodosDiagnosticos, widget: boolean, default: false, required: false, hint: 'Desligado (recomendado): só os diagnósticos com sugestões NIC/NOC específicas são indexados; os restantes ficam acessíveis mas escondidos do Google, para não parecerem conteúdo repetido.' }
