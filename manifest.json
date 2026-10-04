@@ -1,0 +1,25 @@
+{
+  "id": "/",
+  "name": "Enfermeiro Competente",
+  "short_name": "Enf. Competente",
+  "description": "Apoio ao estudo e à prática de enfermagem: NANDA-I, NIC, NOC, escalas, calculadoras e casos clínicos.",
+  "lang": "pt-MZ",
+  "dir": "ltr",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0B1F66",
+  "categories": ["education", "medical"],
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Artigos", "url": "/artigos/", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Vídeos", "url": "/videos/", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
